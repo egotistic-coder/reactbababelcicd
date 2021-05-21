@@ -16,23 +16,12 @@ steps:
 
 - task: Npm@1
   inputs:
-    command: 'custom'
-    customCommand: 'npm-cache clean'
-  displayName: 'clean npm cache'
-
-- task: Npm@1
-  inputs:
     command: 'install'
   displayName: 'install npm'
 
 - task: Npm@1
   inputs:
     command: 'custom'
-    customCommand: 'npm audit fix'
-  displayName: 'fix npm audit'
-
-- task: Npm@1
-  inputs:
-    command: 'custom'
+    workingDir: '''$(Build.SourcesDirectory)'''
     customCommand: 'npm run build'
-  displayName: 'run npm build'
+  displayName: 'npm build'
