@@ -13,10 +13,6 @@ steps:
 - script: echo Starting the Pipeline!
   displayName: 'Start Build'
 
-- task: NodeTool@0
-  inputs:
-    versionSpec: '14.x'
-  displayName: 'install Node JS'
 - task: Npm@1
   inputs:
     command: 'install'
@@ -33,19 +29,3 @@ steps:
     command: 'custom'
     customCommand: 'npm run build'
   displayName: 'run npm build'
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
-  displayName: 'ArchiveFiles'
-
-- task: DownloadBuildArtifacts@0
-  inputs:
-    buildType: 'current'
-    downloadType: 'single'
-    downloadPath: '$(System.ArtifactsDirectory)'
-  displayName: 'Download ArchiveFiles'
