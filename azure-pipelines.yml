@@ -13,6 +13,13 @@ steps:
 - script: echo Starting the Pipeline!
   displayName: 'Start Build'
 
+
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'npm-cache clean'
+  displayName: 'clean npm cache'
+
 - task: Npm@1
   inputs:
     command: 'install'
