@@ -17,6 +17,11 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'echo $(Build.BinariesDirectory)'
+
+- task: CmdLine@2
+  inputs:
+    script: 'echo $(Build.Source)'
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
@@ -29,6 +34,18 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+
+- script: echo $(Build.Repository.LocalPath)
+  displayName: 'Build.Repository.LocalPath'
+  
+- script: echo $(Build.SourceBranch)
+  displayName: 'Build.SourceBranch'
+  
+- script: echo $(Build.StagingDirectory)
+  displayName: 'Build.StagingDirectory'
+
+- script: echo $(Build.ArtifactStagingDirectory)
+  displayName: 'Build.ArtifactStagingDirectory' 
 
 - task: DownloadBuildArtifacts@0
   inputs:
