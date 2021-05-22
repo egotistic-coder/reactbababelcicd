@@ -15,3 +15,18 @@ steps:
 
 - script: echo $(System.DefaultWorkingDirectory)
   displayName: 'Start DefaultWorkingDirectory'
+
+- script: echo "Structure of work folder of this pipeline:"
+    tree $(Agent.WorkFolder)\1 /f
+
+- script: echo "Build.ArtifactStagingDirectory:" 
+
+- script: echo "$(Build.ArtifactStagingDirectory)"
+
+- script: echo "Build.BinariesDirectory:" 
+
+- script: echo "$(Build.BinariesDirectory)"
+
+- script: echo "Build.SourcesDirectory:"
+
+- script: echo "$(Build.SourcesDirectory)"
