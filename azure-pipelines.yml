@@ -13,13 +13,5 @@ steps:
 - script: echo Starting the Pipeline!
   displayName: 'Start Build'
 
-
-- task: Npm@1
-  inputs:
-    command: 'install'
-    workingDir: '$(System.DefaultWorkingDirectory)/reactbababelcicd'
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    workingDir: '$(System.DefaultWorkingDirectory)/reactbababelcicd'
-    customCommand: 'npm run build'
+- script: echo $(System.DefaultWorkingDirectory)
+  displayName: 'Start DefaultWorkingDirectory'
