@@ -30,3 +30,8 @@ steps:
 - script: echo "Build.SourcesDirectory:"
 
 - script: echo "$(Build.SourcesDirectory)"
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: '$(Build.SourcesDirectory)/egotistic-coder/reactbababelcicd'
