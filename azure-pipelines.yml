@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -10,28 +5,12 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Starting the Pipeline!
-  displayName: 'Start Build'
-
-- script: echo $(System.DefaultWorkingDirectory)
-  displayName: 'Start DefaultWorkingDirectory'
-
-- script: echo "Structure of work folder of this pipeline:"
-    tree $(Agent.WorkFolder)\1 /f
-
-- script: echo "Build.ArtifactStagingDirectory:" 
-
-- script: echo "$(Build.ArtifactStagingDirectory)"
-
-- script: echo "Build.BinariesDirectory:" 
-
-- script: echo "$(Build.BinariesDirectory)"
-
-- script: echo "Build.SourcesDirectory:"
-
-- script: echo "$(Build.SourcesDirectory)"
-
-- task: Npm@1
+- task: NodeTool@0
   inputs:
-    command: 'install'
-    workingDir: '$(Build.SourcesDirectory)/egotistic-coder/reactbababelcicd'
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
