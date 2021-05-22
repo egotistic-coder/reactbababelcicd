@@ -17,11 +17,9 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-  displayName: 'install npm'
-
+    workingDir: '$(System.DefaultWorkingDirectory)/reactbababelcicd'
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: '''$(Build.SourcesDirectory)'''
+    workingDir: '$(System.DefaultWorkingDirectory)/reactbababelcicd'
     customCommand: 'npm run build'
-  displayName: 'npm build'
